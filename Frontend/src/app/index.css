@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@plugin 'tailwind-scrollbar';
+.messages::-webkit-scrollbar {
+display: none;
+}
