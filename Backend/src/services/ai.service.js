@@ -4,7 +4,7 @@ import { HumanMessage ,SystemMessage,AIMessage,tool,createAgent} from "langchain
 import * as z from 'zod';
 import { searchInternet } from "./internet.service.js";
 
-const geminiModel = new ChatMistralAI({
+const geminiModel = new ChatGoogleGenerativeAI({
 model: 'gemini-flash-lite-latest',
 apiKey: process.env.GEMINI_API_KEY
 });
@@ -33,8 +33,7 @@ const agent=createAgent({
 export async function generateResponse(messages) {
    const response=await agent.invoke(
  { messages: [
-   new SystemMessage('  You are helpful and precise assistant for answering questions.
- ') ,...(messages.map(msg=>{
+   new SystemMessage('You are helpful and precise assistant for answering questions.') ,...(messages.map(msg=>{
       if(msg.role==='user') {
         return new HumanMessage(msg.content)
       }

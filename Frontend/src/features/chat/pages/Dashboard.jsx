@@ -29,6 +29,7 @@ const Dashboard = () => {
   useEffect(() => {
     chat.initalizeSocketConnection();
     chat.fetchChats();
+    
   }, []);
 
   //Logout handler
@@ -140,7 +141,7 @@ const Dashboard = () => {
             <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800 transition cursor-pointer">
               <div className="w-8 h-8 rounded-full bg-linear-to-r from-cyan-400 to-blue-500" />
               <div className="flex-1">
-                <p className="text-sm font-semibold">Rajesh</p>
+                <p className="text-sm font-semibold"> {user?.username || user?.email || "User"}</p>
                 <p className="text-xs text-slate-400">Freemium</p>
               </div>
             </div>
