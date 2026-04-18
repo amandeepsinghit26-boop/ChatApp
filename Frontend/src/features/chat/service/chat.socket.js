@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 export const initalizeSocketConnection=()=>{
-    const socket=io("https://chatapp-backend-qq7s.onrender.com/", {
+    const socket=io("https://chatapp-backend-qq7s.onrender.com", {
 withCredentials: true,
     })
 
