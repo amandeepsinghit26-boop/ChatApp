@@ -6,7 +6,7 @@ import morgan from 'morgan';
 import cors from 'cors'
 const app = express()
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://chatapp-frontend-z92f.onrender.com',
     credentials:true,
     methods:['GET','POST','PUT','DELETE']
 }))
