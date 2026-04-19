@@ -99,7 +99,7 @@ async function handleOpenChat(chatId,chats) {
   }
 console.log(chats[chatId]?.messages.length);
 
-if (chats[chatId]?.messages.length>=0) {
+if (!chats[chatId]?.messages || chats[chatId]?.messages.length === 0) {
   const data = await getMessages(chatId);
   const { messages } = data;
   const formattedMessages = messages.map((msg) => ({

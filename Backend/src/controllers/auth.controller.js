@@ -2,6 +2,7 @@ import userModel from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { sendEmail } from "../services/mail.service.js";
+
 export const registerController = async (req, res) => {
   const { username, email, password } = req.body;
   const isUserAlreadyExist = await userModel.findOne({
@@ -38,7 +39,7 @@ export const registerController = async (req, res) => {
            <p>Thank you for registering at <strong>Perplexity</strong>.</p>
            <p>We are excited to have you on board!</p>
           <p>Please verify yourself by clicking the link below.</p> 
-          <a href="http://localhost:3000/api/auth/verify-email?token=${emailVerificationToken}">Verify Email</a> `,
+          <a href="https://chatapp-backend-qq7s.onrender.com/api/auth/verify-email?token=${emailVerificationToken}">Verify Email</a> `,
   });
 
   res.status(201).json({
@@ -70,7 +71,7 @@ export const verifyEmail=async (req,res) => {
      const html=`
      <h1>Email Verified Successfully</h1>
      <p>Your email has been verified.You can now log in to your account.</p>
-     <a href="http://localhost:3000/api/auth/login">Go to login</a>
+     <a href="https://chatapp-frontend-z92f.onrender.com/login">Go to login</a>
      `
     return res.send(html);
    } catch (error) {
@@ -111,7 +112,11 @@ const token=jwt.sign({
   username:user.username,
 },process.env.JWT_SECRET_KEY)
 
-res.cookie("token",token)
+res.cookie("token",token,{
+    httpOnly: true,
+   secure: true,
+  sameSite: "None"
+})
 
 console.log("SECRET:", process.env.JWT_SECRET_KEY);
 
