@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 const Dashboard = () => {
+  const [open, setOpen] = useState(false)
   const chat = useChat();
   const auth = useAuth();
   const navigate = useNavigate();
@@ -75,9 +76,13 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen w-full overflow-hidden bg-linear-to-br from-slate-950 via-blue-950 to-slate-950 text-white flex">
       {/* Sidebar */}
-      <aside className="w-64 overflow-y-auto scrollbar-thin 
-            scrollbar-thumb-gray-400 
-            scrollbar-track-transparent hidden sm:block h-screen bg-slate-900/95 border-r border-slate-700/50 p-4 flex flex-col">
+ {open && (
+    <div
+      onClick={() => setOpen(false)}
+      className="fixed inset-0 bg-black/50 z-40 md:hidden"
+    />
+  )}
+      <aside className={`fixed top-0 left-0 h-screen w-64 bg-slate-900/95 border-r border-slate-700/50 p-4 flex flex-col transform transition-transform duration-300 ease-in-out z-50 ${open ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static`}>
         {/* Header */}
         <div className="flex items-center gap-2 mb-8">
           <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-sm">
@@ -163,10 +168,7 @@ const Dashboard = () => {
         <div className="w-full max-w-[100vw] h-[calc(100vh-4rem)]">
           {/* Header */}
           <div className="flex mt-0 items-center justify-between mb-[0.65vw]">
-            <Menu
-              size={24}
-              className="text-slate-400 hover:text-white cursor-pointer transition"
-            />
+            <button onClick={()=> setOpen(true)} className="text-2xl text-slate-400 hover:text-white cursor-pointer transition">☰</button>
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-800/50">
               <span className="text-sm">Model 2.5</span>
               <span className="text-slate-400">⚙</span>
@@ -218,7 +220,7 @@ const Dashboard = () => {
               onSubmit={handleSubmit}
               className="bg-slate-900/60 border sticky border-slate-700/50 rounded-xl p-4"
             >
-              <div className="flex items-end gap-[0.6vw]">
+              <div className="flex items-end justify-center px-1">
                 <input
                   type="text"
                   value={input}
