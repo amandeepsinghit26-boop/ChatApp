@@ -34,9 +34,9 @@ export const registerController = async (req, res) => {
   await sendEmail({
     to: email,
     subject: "Welcome to FindoRA",
-    text: `Hi ${username},\n\nThank you for registering at Perplexity. We are excited to have you on board!`,
+    text: `Hi ${username},\n\nThank you for registering at Findora. We are excited to have you on board!`,
     html: `<p>Hi ${username},</p>
-           <p>Thank you for registering at <strong>Perplexity</strong>.</p>
+           <p>Thank you for registering at <strong>Findora</strong>.</p>
            <p>We are excited to have you on board!</p>
           <p>Please verify yourself by clicking the link below.</p> 
           <a href="https://chatapp-backend-qq7s.onrender.com/api/auth/verify-email?token=${emailVerificationToken}">Verify Email</a> `,
